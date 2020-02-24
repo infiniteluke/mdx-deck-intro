@@ -1,0 +1,35 @@
+{
+  "name": "mdx-deck-intro",
+  "version": "1.0.0",
+  "description": "A quick intro to mdx-deck",
+  "main": "deck.mdx",
+  "repository": "git@github.com:infiniteluke/mdx-deck-intro.git",
+  "author": "Luke Herrington <luke.herrington@appfolio.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
+  },
+  "dependencies": {
+    "code-surfer": "^3.1.0",
+    "mdx-deck": "^4.1.0",
+    "react-spring": "^8.0.27"
+  },
+  "devDependencies": {
+    "gatsby-source-filesystem": "^2.1.48",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md,mdx}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
