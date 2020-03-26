@@ -1,26 +1,1459 @@
-
 import './global.css';
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+import { LiveCode } from 'mdx-deck-live-code';
 
+import IconGrid from './components/IconGrid';
+import DecoupleLine from './components/DecoupleLine';
+import Database from './components/Database';
+import BusinessLogic from './components/BusinessLogic';
+import API from './components/API';
+import ABTest from './components/ABTest';
+import Render from './components/Render';
+import Components from './components/Components';
+import DataFetching from './components/DataFetching';
+import FeatureFlag from './components/FeatureFlag';
+import { ZoomSteps } from './components/lib';
+import Circle from './components/Circle';
+import MovableCircle from './components/MovableCircle';
+import AnimatedCircle from './components/AnimatedCircle';
+
+import customTheme from './theme'
+
+export const theme = customTheme;
+
+import onereqoneres from "./images/one-req-one-res.png"
+import onereqmanyres from "./images/one-req-many-res.png"
+import onereqmanyres1 from "./images/one-req-many-res-1.png"
+import onereqmanyres2 from "./images/one-req-many-res-2.png"
+import onereqmanyres3 from "./images/one-req-many-res-3.png"
+import onereqmanyres4 from "./images/one-req-many-res-4.png"
+import onereqmanyres4_1 from "./images/one-req-many-res-4-1.png"
+import onereqmanyres6 from "./images/one-req-many-res-6.png"
 
 # Presentations with MDX Deck
 
+---
+
+# Copernicus Tech Debt Demolition
 
 ---
 
-## What is MDX?
+<CodeSurferColumns sizes={[2,3]}>
+
+<Step>
+
+<img src={onereqmanyres1} />
+
+```js title="Alternative: Sideposting via Spraypaint \"with\" option"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+<Step>
+
+<img src={onereqmanyres3} />
+
+```js 2:10 title="Alternative: Sideposting via Spraypaint \"with\" option" subtitle="Create Income resources"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+<Step>
+
+<img src={onereqmanyres4} />
+
+```js 12:21 title="Alternative: Sideposting via Spraypaint \"with\" option" subtitle="Create Asset resources"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+<Step>
+
+<img src={onereqmanyres2} />
+
+```js 23:27 title="Alternative: Sideposting via Spraypaint \"with\" option" subtitle="Create Household Member Resource from Incomes and Assets"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+<Step>
+
+<img src={onereqmanyres4_1} />
+
+```js 1:27 title="Alternative: Sideposting via Spraypaint \"with\" option" subtitle="Create Household Member Resource from Incomes and Assets"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+<Step>
+
+<img src={onereqmanyres6} />
+
+```js 48:56 title="Alternative: Sideposting via Spraypaint \"with\" option" subtitle="Save the income certification \"with\" the related details, assets, and incomes resources"
+  const householdMembers = members.map((member, idx) => {
+    const incomes = member.incomes ? member.incomes.map(
+      ({ incomeAmount, incomeType, notes, ssnClaimBenefitsNumber }) =>
+        new IncomeResource({
+          incomeType,
+          notes,
+          amount: incomeAmount,
+          ssnClaimBenefitsNumber
+        })
+    ) : null;
+
+    const assets = member.assets ? member.assets.map(
+      ({annualIncome, cashValue, divestedDate, notes, status }) =>
+        new AssetResource({
+          status,
+          cashValue,
+          annualIncome,
+          notes,
+          divestedDate
+        })
+    ) : null;
+
+    return new HouseholdMemberResource({
+      ...member,
+      incomes,
+      assets
+    });
+  });
+
+  const certDetailModel = new Detail({
+    subsidyType,
+    effectiveDate,
+    moveInDate,
+    transactionType,
+      // ... more attributes
+    eligibilityCheckNotRequired,
+    householdMembers
+  });
+
+  const incomeCertificationCore = new IncomeCertificationCore();
+  incomeCertificationCore.assignAttributes({
+    id,
+    unitUuid,
+    certDetailType: projectType,
+    certificationDetail: certDetailModel
+  });
+
+  await incomeCertificationCore.save({
+    with: {
+      certificationDetail: {
+        householdMembers: ['assets', 'incomes']
+      }
+    }
+  });
+```
+
+</Step>
+
+</CodeSurferColumns>
+
 
 ---
 
-## What is Gatsby?
+# Components as Data
 
 ---
 
-## CodeSurfer
+<div
+  style={{
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'white',
+  }}
+>
+  <IconGrid>
+    <ZoomSteps>
+      <Database style={{ gridRow: '2/3', gridColumn: '1/2' }} />
+      <BusinessLogic style={{ gridRow: '2/3', gridColumn: '2/3' }} />
+      <DataFetching style={{ gridRow: '2/3', gridColumn: '3/4' }} />
+      <FeatureFlag style={{ gridRow: '3/4', gridColumn: '4/5' }} />
+      <ABTest style={{ gridRow: '1/2', gridColumn: '4/5' }} />
+      <Components style={{ gridRow: '2/3', gridColumn: '4/5' }} />
+      <Render style={{ gridRow: '2/3', gridColumn: '5/6' }} />
+    </ZoomSteps>
+  </IconGrid>
+</div>
 
 ---
 
-## Custom Components
+<div
+  style={{
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'white',
+  }}
+>
+  <IconGrid>
+    <Database style={{ gridRow: '2/3', gridColumn: '1/2' }} />
+    <BusinessLogic style={{ gridRow: '2/3', gridColumn: '2/3' }} />
+    <DataFetching style={{ gridRow: '2/3', gridColumn: '3/4'}} />
+    <FeatureFlag style={{ gridRow: '3/4', gridColumn: '4/5' }} />
+    <ABTest style={{ gridRow: '1/2', gridColumn: '4/5' }} />
+    <Components style={{gridRow: '2/3', gridColumn: '4/5' }} />
+    <Render style={{ gridRow: '2/3', gridColumn: '5/6' }} />
+  </IconGrid>
+  <DecoupleLine steps={['LEFT', 'MID_LEFT', 'FAR_RIGHT', 'MID_RIGHT']} />
+</div>
 
 ---
 
-## Hosting Your Deck
+# mdx-deck
+
+## markdown + jsx + gatsby = mdx-deck
+
+---
+
+<CodeSurfer>
+
+```md title="What is Markdown?" subtitle="A lightweight markup language with plain-text-formatting syntax"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```md title="What is MDX?" subtitle="MDX is an authorable format for writing JSX in your Markdown"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+```
+
+```mdx 1:12 title="MDX" subtitle="Inline components in your markdown. Think short codes!"
+import InteractiveChart from './components'
+
+# Heading
+- **List**
+- of
+- important *things*
+
+<InteractiveChart size="medium" />
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+```
+
+</CodeSurfer>
+
+---
+
+# mdx-deck
+
+- 📝 Write presentations in markdown
+- ⚛️ Import and use React components
+- 💅 Customizable themes and components
+- 0️⃣ Zero-config CLI
+- 💁 Presenter mode
+- 📓 Speaker notes
+
+---
+
+## `<Appear />`
+
+<Appear>
+
+<img width="800px" alt="boo" src="https://media.giphy.com/media/mDLkpVWddyqqI/giphy.gif" />
+
+</Appear>
+
+---
+
+<CodeSurfer >
+
+```md title="<Appear/> Code sample"
+## `<Appear />`
+
+<Appear>
+
+<img
+  width="800px"
+  alt="boo"
+  src="https://media.giphy.com/media/mDLkpVWddyqqI/giphy.gif"
+/>
+
+</Appear>
+```
+
+</CodeSurfer>
+
+
+---
+
+## `<Split />`
+
+<Split>
+
+![](https://media.giphy.com/media/PllyuUTPUHjqWqox5l/giphy.gif)
+
+![](https://media.giphy.com/media/oz4mYmqFT2GTIaD5Ga/giphy.gif)
+
+</Split>
+
+---
+
+<CodeSurfer >
+
+```md title="<Split/> Code sample"
+## `<Split />`
+
+<Split>
+
+![left](https://media.giphy.com/media/PllyuUTPUHjqWqox5l/giphy.gif)
+
+![right](https://media.giphy.com/media/oz4mYmqFT2GTIaD5Ga/giphy.gif)
+
+</Split>
+```
+
+</CodeSurfer>
+
+---
+
+# "Those code slides are magic"
+
+<img width="800px" alt="david blain" src="https://media.giphy.com/media/Sf0lxerEx2eNG/giphy.gif" />
+
+---
+
+<CodeSurfer>
+
+```md title="Animated Code Samples with <CodeSurfer/ >"
+
+<CodeSurfer>
+
+```md title="Markdown"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+</CodeSurfer>
+
+```
+
+```md 1:30 title="Animated Code Samples with <CodeSurfer/ >"
+
+<CodeSurfer>
+
+```md title="Markdown"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+```mdx 1:12 title="MDX" subtitle="Inline components in your markdown. Think short codes!"
+import InteractiveChart from './components'
+
+# Heading
+- **List**
+- of
+- important *things*
+
+<InteractiveChart size="medium" />
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+</CodeSurfer>
+
+```
+
+```md 15 title="CodeSurfer API" subtitle="highlight, line ranges, and columns. add titles, and subtitles"
+
+<CodeSurfer>
+
+```md title="Markdown"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+```mdx 1:12 title="MDX" subtitle="Inline components in your markdown. Think short codes!"
+import InteractiveChart from './components'
+
+# Heading
+- **List**
+- of
+- important *things*
+
+<InteractiveChart size="medium" />
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+</CodeSurfer>
+
+```
+
+```md title="CodeSurfer API" subtitle="CodeSurfer parses the AST, diff between steps and animates accordingly"
+
+<CodeSurfer>
+
+```md title="Markdown"
+# Heading
+- **List**
+- of
+- important *things*
+
+`console.log('code sample')`
+
+[Learn more!](https://www.markdownguide.org/)
+‎```
+
+</CodeSurfer>
+
+```
+
+</CodeSurfer>
+
+---
+
+<LiveCode
+  title="Live coding with <LiveCode />"
+  size="large"
+  previewProps={{
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+  }}
+  editorProps={{
+    style: {
+      fontSize: '0.4em',
+      backgroundColor: '#121212'
+    }
+  }}
+  code={`() => {
+    const [count, setCount] = React.useState(1);
+    return (
+      <button
+        style={{ color: "white", padding: "40px", background: "linear-gradient(45deg,#0cf,#4be8ff)", borderRadius: "15px", fontSize: '2rem',border: 0 }}
+        onClick={() =>
+          setCount(count => count + 1)
+        }
+      >
+        {\`Num Clicks: \${count}\`}
+      </button>
+    )
+  }`}
+/>
+
+---
+
+## Making Custom mdx-deck Components
+
+<img src="https://media.giphy.com/media/10yIEN8cMn4i9W/giphy.gif" />
+
+---
+
+# useSteps
+
+---
+
+<CodeSurfer>
+
+```jsx 
+import React from 'react'
+import { useSteps } from 'mdx-deck'
+
+export default props => {
+  const length = 4
+  const step = useSteps(length)
+
+  return (
+    <h2>
+      The current step is {step}/{length}
+    </h2>
+  )
+}
+```
+
+```jsx 5:6
+import React from 'react'
+import { useSteps } from 'mdx-deck'
+
+export default props => {
+  const length = 4
+  const step = useSteps(length)
+
+  return (
+    <h2>
+      The current step is {step}/{length}
+    </h2>
+  )
+}
+```
+
+```jsx 10
+import React from 'react'
+import { useSteps } from 'mdx-deck'
+
+export default props => {
+  const length = 4
+  const step = useSteps(length)
+
+  return (
+    <h2>
+      The current step is {step}/{length}
+    </h2>
+  )
+}
+```
+
+```jsx 10[27:41]
+import React from 'react'
+import { useSteps } from 'mdx-deck'
+
+export default props => {
+  const length = 4
+  const step = useSteps(length)
+
+  return (
+    <h2>
+      The current step is {step}/{length}
+    </h2>
+  )
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns sizes={[2,3]}>
+<Step>
+
+<svg height="100%" width="100%">
+  <Circle color="#a64d79" />
+</svg>
+
+```jsx
+import React from 'react';
+
+export default ({
+  color = 'white',
+  x = '50%',
+  y = '50%'
+}) => (
+  <circle
+    cx={x}
+    cy={y}
+    r="50"
+    fill={color}
+  />
+)
+```
+
+</Step>
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer>
+
+```jsx
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import Circle from './Circle'
+
+export default ({
+  color = 'white',
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  return (
+    <Circle
+      x={x[step]}
+      y={y[step]}
+      r="50"
+    />
+  )
+}
+```
+
+```jsx 2
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import Circle from './Circle'
+
+export default ({
+  color = 'white',
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  return (
+    <Circle
+      x={x[step]}
+      y={y[step]}
+      r="50"
+    />
+  )
+}
+```
+
+```jsx 7,8,10,13,14
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import Circle from './Circle'
+
+export default ({
+  color = 'white',
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  return (
+    <Circle
+      x={x[step]}
+      y={y[step]}
+      r="50"
+    />
+  )
+}
+```
+
+</CodeSurfer>
+
+---
+
+<svg height="100%" width="100%">
+  <MovableCircle color="#a64d79" />
+</svg>
+
+---
+
+
+<CodeSurfer>
+
+```jsx
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import { useSpring, animated } from 'react-spring';
+import Circle from './Circle'
+
+const AnimatedCircle = animated(Circle)
+
+export default ({
+  color,
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  const props = useSpring({ x: x[step],y: y[step]});
+  return (
+    <AnimatedCircle
+      x={props.x}
+      y={props.y}
+      r="50"
+      color={color}
+    />
+  )
+}
+```
+
+```jsx 2:3
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import { useSpring, animated } from 'react-spring';
+import Circle from './Circle'
+
+const AnimatedCircle = animated(Circle)
+
+export default ({
+  color,
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  const props = useSpring({ x: x[step],y: y[step]});
+  return (
+    <AnimatedCircle
+      x={props.x}
+      y={props.y}
+      r="50"
+      color={color}
+    />
+  )
+}
+```
+
+```jsx 10,11,13,14
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import { useSpring, animated } from 'react-spring';
+import Circle from './Circle'
+
+const AnimatedCircle = animated(Circle)
+
+export default ({
+  color,
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  const props = useSpring({ x: x[step],y: y[step]});
+  return (
+    <AnimatedCircle
+      x={props.x}
+      y={props.y}
+      r="50"
+      color={color}
+    />
+  )
+}
+```
+
+```jsx 10,11,13[8:12],14[17:51]
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import { useSpring, animated } from 'react-spring';
+import Circle from './Circle'
+
+const AnimatedCircle = animated(Circle)
+
+export default ({
+  color,
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  const props = useSpring({ x: x[step],y: y[step]});
+  return (
+    <AnimatedCircle
+      x={props.x}
+      y={props.y}
+      r="50"
+      color={color}
+    />
+  )
+}
+```
+
+```jsx 14[8:13],16,17,18
+import React from 'react';
+import { useSteps } from 'mdx-deck'
+import { useSpring, animated } from 'react-spring';
+import Circle from './Circle'
+
+const AnimatedCircle = animated(Circle)
+
+export default ({
+  color,
+  x=['50%','75%'],
+  y=['50%','75%']
+}) => {
+  const step = useSteps(x.length-1)
+  const props = useSpring({ x: x[step],y: y[step]});
+  return (
+    <AnimatedCircle
+      x={props.x}
+      y={props.y}
+      r="50"
+      color={color}
+    />
+  )
+}
+```
+
+</CodeSurfer>
+
+---
+
+<svg height="100%" width="100%">
+  <AnimatedCircle
+    color="#a64d79"
+    y={['80%','85%','15%','90%','11%']}
+    x={['10%','65%','83%','10%','22%']}
+  />
+  <AnimatedCircle
+    color="#3d85c6"
+    x={['10%','75%','15%','90%','11%']}
+    y={['20%','75%','83%','10%','22%']}
+  />
+  <AnimatedCircle
+    color="#674da7"
+    x={['83%','10%','22%','90%','11%']}
+    y={['50%','75%','50%','75%','15%']}
+  />
+  <AnimatedCircle
+    color="#44818d"
+    x={['83%','10%','18%','90%','11%'].reverse()}
+    y={['50%','75%','44%','75%','15%'].reverse()}
+  />
+</svg>
+
+---
+
+<CodeSurfer>
+
+```jsx title="MDX Deck Release Schedule"
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+```
+
+```jsx 4:7
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+```
+
+```jsx 9:17
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+```
+
+```jsx 19:31
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+```
+
+```jsx 32:38
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+```
+
+</CodeSurfer>
+
+---
+
+<svg width='100%' height='100%'>
+  <g id='columnGroup'>
+    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
+      <tspan x='5%' dy='0'>Branch</tspan>
+      <tspan x='5%' dy='25%'>Internal</tspan>
+      <tspan x='5%' dy='25%'>Live 1</tspan>
+      <tspan x='5%' dy='25%'>Live All</tspan>
+    </text>
+    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
+    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
+    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
+    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
+    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
+  </g>
+  {/* Red Line */}
+  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
+  {/* Purple Lines */}
+  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
+  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
+  {/* Blue Lines */}
+  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
+  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
+  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
+  {/* Green Lines */}
+  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
+  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
+  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
+  {/* Animated Dots */}
+  <AnimatedCircle
+    r="15"
+    color="#a64d79"
+    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
+    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#674da7"
+    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#3d85c6"
+    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
+    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
+  />
+  <AnimatedCircle
+    r="15"
+    color="#44818d" 
+    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
+    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
+  />
+</svg>
+
+---
+
+# Thanks!
