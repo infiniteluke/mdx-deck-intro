@@ -17,6 +17,7 @@ export default React.forwardRef(
       fillOpacity = 1,
       toggled = false,
       onClick = () => {},
+      ...rest
     },
     ref
   ) => {
@@ -31,6 +32,7 @@ export default React.forwardRef(
       : {};
     return (
       <circle
+        {...rest}
         ref={myRef}
         onClick={onClick}
         cx={x}

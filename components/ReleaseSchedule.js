@@ -36,6 +36,7 @@ const RowLabel = ({ children, x, y, hightlight }) => (
 const Line = ({ selected, color, dashed, ...props }) => (
   <line
     {...props}
+    style={{ cursor: 'pointer' }}
     strokeDasharray={dashed ? 9 : 0}
     strokeWidth="10"
     stroke={COLOR_MAP[color]}
@@ -206,6 +207,9 @@ export default () => {
         y2={row(3)}
         color="red"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'red' ? 'red' : 'none'))
+        }
       />
       {/* Purple Lines */}
       <Line
@@ -215,6 +219,9 @@ export default () => {
         y2={row(2)}
         color="purple"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'purple' ? 'purple' : 'none'))
+        }
       />
       <Line
         x1={col(3)}
@@ -224,6 +231,9 @@ export default () => {
         color="purple"
         selected={selected}
         dashed
+        onClick={() =>
+          setSelected(selected => (selected !== 'purple' ? 'purple' : 'none'))
+        }
       />
       <Line
         x1={col(7)}
@@ -232,6 +242,9 @@ export default () => {
         y2={row(3)}
         color="purple"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'purple' ? 'purple' : 'none'))
+        }
       />
       {/* Blue Lines */}
       <Line
@@ -241,6 +254,9 @@ export default () => {
         y2={row(2)}
         color="blue"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'blue' ? 'blue' : 'none'))
+        }
       />
       <Line
         x1={col(4)}
@@ -250,6 +266,9 @@ export default () => {
         color="blue"
         selected={selected}
         dashed
+        onClick={() =>
+          setSelected(selected => (selected !== 'blue' ? 'blue' : 'none'))
+        }
       />
       <Line
         x1={col(7)}
@@ -258,6 +277,9 @@ export default () => {
         y2={row(3)}
         color="blue"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'blue' ? 'blue' : 'none'))
+        }
       />
       {/* Green Lines */}
       <Line
@@ -267,6 +289,9 @@ export default () => {
         y2={row(1)}
         color="green"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'green' ? 'green' : 'none'))
+        }
       />
       <Line
         x1={col(4)}
@@ -276,6 +301,9 @@ export default () => {
         color="green"
         selected={selected}
         dashed
+        onClick={() =>
+          setSelected(selected => (selected !== 'green' ? 'green' : 'none'))
+        }
       />
       <Line
         x1={col(7)}
@@ -284,51 +312,58 @@ export default () => {
         y2={row(2)}
         color="green"
         selected={selected}
+        onClick={() =>
+          setSelected(selected => (selected !== 'green' ? 'green' : 'none'))
+        }
       />
       {/* Animated Dots */}
       <AnimatedCircle
+        color="red"
         r="18"
         toggled={selected === 'red'}
         fillOpacity={selectedOpacity(selected, 'red')}
         onClick={() =>
           setSelected(selected => (selected !== 'red' ? 'red' : 'none'))
         }
-        color="red"
         x={DAY_STEPS[0].map(col)}
         y={ENV_STEPS[0].map(row)}
+        style={{ cursor: 'pointer' }}
       />
       <AnimatedCircle
+        color="purple"
+        r="18"
         toggled={selected === 'purple'}
         fillOpacity={selectedOpacity(selected, 'purple')}
         onClick={() =>
           setSelected(selected => (selected !== 'purple' ? 'purple' : 'none'))
         }
-        r="18"
-        color="purple"
         x={DAY_STEPS[1].map(col)}
         y={ENV_STEPS[1].map(row)}
+        style={{ cursor: 'pointer' }}
       />
       <AnimatedCircle
+        color="blue"
+        r="18"
         toggled={selected === 'blue'}
         fillOpacity={selectedOpacity(selected, 'blue')}
         onClick={() =>
           setSelected(selected => (selected !== 'blue' ? 'blue' : 'none'))
         }
-        r="18"
-        color="blue"
         x={DAY_STEPS[2].map(col)}
         y={ENV_STEPS[2].map(row)}
+        style={{ cursor: 'pointer' }}
       />
       <AnimatedCircle
+        color="green"
+        r="18"
         toggled={selected === 'green'}
         onClick={() =>
           setSelected(selected => (selected !== 'green' ? 'green' : 'none'))
         }
         fillOpacity={selectedOpacity(selected, 'green')}
-        r="18"
-        color="green"
         x={DAY_STEPS[3].map(col)}
         y={ENV_STEPS[3].map(row)}
+        style={{ cursor: 'pointer' }}
       />
     </svg>
   );

@@ -15,13 +15,16 @@ export default React.forwardRef(
       onClick,
       toggled,
       fillOpacity,
+      ...rest
     },
     ref
   ) => {
     const step = useSteps(x.length - 1);
     const props = useSpring({ x: x[step], y: y[step] });
+    console.log(rest)
     return (
       <AnimatedCircle
+        {...rest}
         ref={ref}
         x={props.x}
         y={props.y}
