@@ -56,7 +56,7 @@ export function useZoomChildrenSteps(children) {
   };
   const zoomed = {
     transition: 'transform .5s ease',
-    transform: 'scale(1.4)',
+    transform: 'scale(1.3)',
   };
   return React.Children.map(children, (child, index) => {
     const style = child.props ? child.props.style : {};
@@ -79,4 +79,8 @@ export function ZoomSteps({ children }) {
 
 export function SlideIn({ children }) {
   return useSlideInChildren(children);
+}
+
+export function selectedOpacity(selected, color) {
+  return selected === 'none' || selected === color ? 1 : .2
 }

@@ -16,6 +16,7 @@ import { ZoomSteps } from './components/lib'
 import Circle from './components/Circle'
 import MovableCircle from './components/MovableCircle'
 import AnimatedCircle from './components/AnimatedCircle'
+import ReleaseSchedule from './components/ReleaseSchedule'
 
 import customTheme from './theme'
 
@@ -29,12 +30,19 @@ import onereqmanyres3 from "./images/one-req-many-res-3.png"
 import onereqmanyres4 from "./images/one-req-many-res-4.png"
 import onereqmanyres4_1 from "./images/one-req-many-res-4-1.png"
 import onereqmanyres6 from "./images/one-req-many-res-6.png"
+import release from "./images/release.png"
 
-# Presentations with MDX Deck
+# Intro MDX Deck
 
 ---
 
 # Copernicus Tech Debt Demolition
+
+<Appear>
+
+### 🙋‍♀️ _"but how did you make the slides?"_
+
+</Appear>
 
 ---
 
@@ -465,9 +473,9 @@ import onereqmanyres6 from "./images/one-req-many-res-6.png"
 
 ---
 
-# mdx-deck
+# MDX Deck
 
-## markdown + jsx + gatsby = mdx-deck
+## React MDX-based presentation decks
 
 ---
 
@@ -520,7 +528,8 @@ import InteractiveChart from './components'
 
 ---
 
-# mdx-deck
+# MDX Deck
+`npm install mdx-deck`
 
 - 📝 Write presentations in markdown
 - ⚛️ Import and use React components
@@ -589,6 +598,21 @@ import InteractiveChart from './components'
 ```
 
 </CodeSurfer>
+
+---
+
+## `<Notes />`
+
+<Notes>
+
+* Notes is exactly what it sounds like
+* A way to create speaker notes, viewable only in speaker mode
+
+</Notes>
+
+---
+
+# This is the Next Slide
 
 ---
 
@@ -687,7 +711,7 @@ import InteractiveChart from './components'
 
 ```
 
-```md title="CodeSurfer API" subtitle="CodeSurfer parses the AST, diff between steps and animates accordingly"
+```md title="CodeSurfer API" subtitle="CodeSurfer parses the AST, diffs between steps and animates accordingly"
 
 <CodeSurfer>
 
@@ -744,7 +768,7 @@ import InteractiveChart from './components'
 
 ---
 
-## Making Custom mdx-deck Components
+## Custom MDX Deck Components
 
 <img src="https://media.giphy.com/media/10yIEN8cMn4i9W/giphy.gif" />
 
@@ -754,7 +778,11 @@ import InteractiveChart from './components'
 
 ---
 
-<CodeSurfer>
+<CodeSurferColumns sizes={[2,3]}>
+
+<Step>
+
+### The current step is 1/4
 
 ```jsx 
 import React from 'react'
@@ -772,6 +800,11 @@ export default props => {
 }
 ```
 
+</Step>
+<Step>
+
+### The current step is 2/4
+
 ```jsx 5:6
 import React from 'react'
 import { useSteps } from 'mdx-deck'
@@ -787,6 +820,11 @@ export default props => {
   )
 }
 ```
+
+</Step>
+<Step>
+
+### The current step is 3/4
 
 ```jsx 10
 import React from 'react'
@@ -804,6 +842,11 @@ export default props => {
 }
 ```
 
+</Step>
+<Step>
+
+### The current step is 4/4
+
 ```jsx 10[27:41]
 import React from 'react'
 import { useSteps } from 'mdx-deck'
@@ -820,7 +863,9 @@ export default props => {
 }
 ```
 
-</CodeSurfer>
+</Step>
+
+</CodeSurferColumns>
 
 ---
 
@@ -828,14 +873,14 @@ export default props => {
 <Step>
 
 <svg height="100%" width="100%">
-  <Circle color="#a64d79" />
+  <Circle color="red" />
 </svg>
 
 ```jsx
 import React from 'react'
 
 export default ({
-  color = 'white',
+  color,
   x = '50%',
   y = '50%'
 }) => (
@@ -923,7 +968,7 @@ export default ({
 ---
 
 <svg height="100%" width="100%">
-  <MovableCircle color="#a64d79" />
+  <MovableCircle color="red" />
 </svg>
 
 ---
@@ -1067,22 +1112,22 @@ export default ({
 
 <svg height="100%" width="100%">
   <AnimatedCircle
-    color="#a64d79"
+    color="red"
     y={['80%','85%','15%','90%','11%']}
     x={['10%','65%','83%','10%','22%']}
   />
   <AnimatedCircle
-    color="#3d85c6"
+    color="purple"
     x={['10%','75%','15%','90%','11%']}
     y={['20%','75%','83%','10%','22%']}
   />
   <AnimatedCircle
-    color="#674da7"
+    color="blue"
     x={['83%','10%','22%','90%','11%']}
     y={['50%','75%','50%','75%','15%']}
   />
   <AnimatedCircle
-    color="#44818d"
+    color="green"
     x={['83%','10%','18%','90%','11%'].reverse()}
     y={['50%','75%','44%','75%','15%'].reverse()}
   />
@@ -1090,370 +1135,356 @@ export default ({
 
 ---
 
+<span style={{ fontSize: '12rem' }}>🤔</span>
+
+---
+
+# `<ReleaseSchedule />`
+
+<img alr="release schedule" src={release} />
+
+---
+
 <CodeSurfer>
 
 ```jsx title="MDX Deck Release Schedule"
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
+export default () => {
+  const [selected, setSelected] = React.useState('none')
+  const release = COLORS.indexOf(selected)
+  const step = useSteps(7);
+
+  return (
+    <svg width='100%' height='100%'>
+      <g id='columnGroup'>
+        <RowLabel active={isActiveEnv(release, step, 0)} x={X_AXIS_OFFSET} y={row(0)}>Branch</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 1)} x={X_AXIS_OFFSET} y={row(1)}>Internal</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 2)} x={X_AXIS_OFFSET} y={row(2)}>Live 1</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 3)} x={X_AXIS_OFFSET} y={row(3)}>Live All</RowLabel>
+
+        <ColLabel active={isActiveDay(release, step, 0)} x={col(0)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 1)} x={col(1)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 2)} x={col(2)} y={Y_AXIS_OFFSET}>W</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 3)} x={col(3)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 4)} x={col(4)} y={Y_AXIS_OFFSET}>F</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 5)} x={col(5)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 6)} x={col(6)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 7)} x={col(7)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 8)} x={col(8)} y={Y_AXIS_OFFSET}>T</ColLabel>
+      </g>
+      {/* Red Line */}
+      <Line x1={col(0)} y1={row(0)} x2={col(3)} y2={row(3)} color="red" selected={selected} />
+      {/* Purple Lines */}
+      <Line x1={col(1)} y1={row(0)} x2={col(3)} y2={row(2)} color="purple" selected={selected} />
+      <Line x1={col(3)} y1={row(2)} x2={col(7)} y2={row(2)} color="purple" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="purple" selected={selected} />
+      {/* Blue Lines */}
+      <Line x1={col(2)} y1={row(0)} x2={col(4)} y2={row(2)} color="blue" selected={selected}  />
+      <Line x1={col(4)} y1={row(2)} x2={col(7)} y2={row(2)} color="blue" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="blue" selected={selected}  />
+      {/* Green Lines */}
+      <Line x1={col(3)} y1={row(0)} x2={col(4)} y2={row(1)} color="green" selected={selected}  />
+      <Line x1={col(4)} y1={row(1)} x2={col(7)} y2={row(1)} color="green" selected={selected} dashed/>
+      <Line x1={col(7)} y1={row(1)} x2={col(8)} y2={row(2)} color="green" selected={selected} />
+      {/* Animated Dots */}
+      <AnimatedCircle
+        r="18"
+        toggled={selected === 'red'}
+        fillOpacity={selectedOpacity(selected, 'red')}
+        onClick={() => setSelected(selected => selected !== 'red' ? 'red' : 'none')}
+        color="red"
+        x={DAY_STEPS[0].map(col)}
+        y={ENV_STEPS[0].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'purple'}
+        fillOpacity={selectedOpacity(selected, 'purple')}
+        onClick={() => setSelected(selected => selected !== 'purple' ? 'purple' : 'none')}
+        r="18"
+        color="purple"
+        x={DAY_STEPS[1].map(col)}
+        y={ENV_STEPS[1].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'blue'}
+        fillOpacity={selectedOpacity(selected, 'blue')}
+        onClick={() => setSelected(selected => selected !== 'blue' ? 'blue' : 'none')}
+        r="18"
+        color="blue"
+        x={DAY_STEPS[2].map(col)}
+        y={ENV_STEPS[2].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'green'}
+        onClick={() => setSelected(selected => selected !== 'green' ? 'green' : 'none')}
+        fillOpacity={selectedOpacity(selected, 'green')}
+        r="18"
+        color="green" 
+        x={DAY_STEPS[3].map(col)}
+        y={ENV_STEPS[3].map(row)}
+      />
+    </svg>
+  )
+}
 ```
 
-```jsx 4:7
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
+```jsx 9:22 subtitle="col/row helpers position svgs, highlight when active"
+export default () => {
+  const [selected, setSelected] = React.useState('none')
+  const release = COLORS.indexOf(selected)
+  const step = useSteps(7);
+
+  return (
+    <svg width='100%' height='100%'>
+      <g id='columnGroup'>
+        <RowLabel active={isActiveEnv(release, step, 0)} x={X_AXIS_OFFSET} y={row(0)}>Branch</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 1)} x={X_AXIS_OFFSET} y={row(1)}>Internal</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 2)} x={X_AXIS_OFFSET} y={row(2)}>Live 1</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 3)} x={X_AXIS_OFFSET} y={row(3)}>Live All</RowLabel>
+
+        <ColLabel active={isActiveDay(release, step, 0)} x={col(0)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 1)} x={col(1)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 2)} x={col(2)} y={Y_AXIS_OFFSET}>W</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 3)} x={col(3)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 4)} x={col(4)} y={Y_AXIS_OFFSET}>F</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 5)} x={col(5)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 6)} x={col(6)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 7)} x={col(7)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 8)} x={col(8)} y={Y_AXIS_OFFSET}>T</ColLabel>
+      </g>
+      {/* Red Line */}
+      <Line x1={col(0)} y1={row(0)} x2={col(3)} y2={row(3)} color="red" selected={selected} />
+      {/* Purple Lines */}
+      <Line x1={col(1)} y1={row(0)} x2={col(3)} y2={row(2)} color="purple" selected={selected} />
+      <Line x1={col(3)} y1={row(2)} x2={col(7)} y2={row(2)} color="purple" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="purple" selected={selected} />
+      {/* Blue Lines */}
+      <Line x1={col(2)} y1={row(0)} x2={col(4)} y2={row(2)} color="blue" selected={selected}  />
+      <Line x1={col(4)} y1={row(2)} x2={col(7)} y2={row(2)} color="blue" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="blue" selected={selected}  />
+      {/* Green Lines */}
+      <Line x1={col(3)} y1={row(0)} x2={col(4)} y2={row(1)} color="green" selected={selected}  />
+      <Line x1={col(4)} y1={row(1)} x2={col(7)} y2={row(1)} color="green" selected={selected} dashed/>
+      <Line x1={col(7)} y1={row(1)} x2={col(8)} y2={row(2)} color="green" selected={selected} />
+      {/* Animated Dots */}
+      <AnimatedCircle
+        r="18"
+        toggled={selected === 'red'}
+        fillOpacity={selectedOpacity(selected, 'red')}
+        onClick={() => setSelected(selected => selected !== 'red' ? 'red' : 'none')}
+        color="red"
+        x={DAY_STEPS[0].map(col)}
+        y={ENV_STEPS[0].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'purple'}
+        fillOpacity={selectedOpacity(selected, 'purple')}
+        onClick={() => setSelected(selected => selected !== 'purple' ? 'purple' : 'none')}
+        r="18"
+        color="purple"
+        x={DAY_STEPS[1].map(col)}
+        y={ENV_STEPS[1].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'blue'}
+        fillOpacity={selectedOpacity(selected, 'blue')}
+        onClick={() => setSelected(selected => selected !== 'blue' ? 'blue' : 'none')}
+        r="18"
+        color="blue"
+        x={DAY_STEPS[2].map(col)}
+        y={ENV_STEPS[2].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'green'}
+        onClick={() => setSelected(selected => selected !== 'green' ? 'green' : 'none')}
+        fillOpacity={selectedOpacity(selected, 'green')}
+        r="18"
+        color="green" 
+        x={DAY_STEPS[3].map(col)}
+        y={ENV_STEPS[3].map(row)}
+      />
+    </svg>
+  )
+}
 ```
 
-```jsx 9:17
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
+```jsx 24:37
+export default () => {
+  const [selected, setSelected] = React.useState('none')
+  const release = COLORS.indexOf(selected)
+  const step = useSteps(7);
+
+  return (
+    <svg width='100%' height='100%'>
+      <g id='columnGroup'>
+        <RowLabel active={isActiveEnv(release, step, 0)} x={X_AXIS_OFFSET} y={row(0)}>Branch</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 1)} x={X_AXIS_OFFSET} y={row(1)}>Internal</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 2)} x={X_AXIS_OFFSET} y={row(2)}>Live 1</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 3)} x={X_AXIS_OFFSET} y={row(3)}>Live All</RowLabel>
+
+        <ColLabel active={isActiveDay(release, step, 0)} x={col(0)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 1)} x={col(1)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 2)} x={col(2)} y={Y_AXIS_OFFSET}>W</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 3)} x={col(3)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 4)} x={col(4)} y={Y_AXIS_OFFSET}>F</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 5)} x={col(5)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 6)} x={col(6)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 7)} x={col(7)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 8)} x={col(8)} y={Y_AXIS_OFFSET}>T</ColLabel>
+      </g>
+      {/* Red Line */}
+      <Line x1={col(0)} y1={row(0)} x2={col(3)} y2={row(3)} color="red" selected={selected} />
+      {/* Purple Lines */}
+      <Line x1={col(1)} y1={row(0)} x2={col(3)} y2={row(2)} color="purple" selected={selected} />
+      <Line x1={col(3)} y1={row(2)} x2={col(7)} y2={row(2)} color="purple" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="purple" selected={selected} />
+      {/* Blue Lines */}
+      <Line x1={col(2)} y1={row(0)} x2={col(4)} y2={row(2)} color="blue" selected={selected}  />
+      <Line x1={col(4)} y1={row(2)} x2={col(7)} y2={row(2)} color="blue" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="blue" selected={selected}  />
+      {/* Green Lines */}
+      <Line x1={col(3)} y1={row(0)} x2={col(4)} y2={row(1)} color="green" selected={selected}  />
+      <Line x1={col(4)} y1={row(1)} x2={col(7)} y2={row(1)} color="green" selected={selected} dashed/>
+      <Line x1={col(7)} y1={row(1)} x2={col(8)} y2={row(2)} color="green" selected={selected} />
+      {/* Animated Dots */}
+      <AnimatedCircle
+        r="18"
+        toggled={selected === 'red'}
+        fillOpacity={selectedOpacity(selected, 'red')}
+        onClick={() => setSelected(selected => selected !== 'red' ? 'red' : 'none')}
+        color="red"
+        x={DAY_STEPS[0].map(col)}
+        y={ENV_STEPS[0].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'purple'}
+        fillOpacity={selectedOpacity(selected, 'purple')}
+        onClick={() => setSelected(selected => selected !== 'purple' ? 'purple' : 'none')}
+        r="18"
+        color="purple"
+        x={DAY_STEPS[1].map(col)}
+        y={ENV_STEPS[1].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'blue'}
+        fillOpacity={selectedOpacity(selected, 'blue')}
+        onClick={() => setSelected(selected => selected !== 'blue' ? 'blue' : 'none')}
+        r="18"
+        color="blue"
+        x={DAY_STEPS[2].map(col)}
+        y={ENV_STEPS[2].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'green'}
+        onClick={() => setSelected(selected => selected !== 'green' ? 'green' : 'none')}
+        fillOpacity={selectedOpacity(selected, 'green')}
+        r="18"
+        color="green" 
+        x={DAY_STEPS[3].map(col)}
+        y={ENV_STEPS[3].map(row)}
+      />
+    </svg>
+  )
+}
 ```
 
-```jsx 19:31
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
-```
+```jsx 38:56 subtitle="Circles animate based on step"
+export default () => {
+  const [selected, setSelected] = React.useState('none')
+  const release = COLORS.indexOf(selected)
+  const step = useSteps(7);
 
-```jsx 32:38
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
+  return (
+    <svg width='100%' height='100%'>
+      <g id='columnGroup'>
+        <RowLabel active={isActiveEnv(release, step, 0)} x={X_AXIS_OFFSET} y={row(0)}>Branch</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 1)} x={X_AXIS_OFFSET} y={row(1)}>Internal</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 2)} x={X_AXIS_OFFSET} y={row(2)}>Live 1</RowLabel>
+        <RowLabel active={isActiveEnv(release, step, 3)} x={X_AXIS_OFFSET} y={row(3)}>Live All</RowLabel>
+
+        <ColLabel active={isActiveDay(release, step, 0)} x={col(0)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 1)} x={col(1)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 2)} x={col(2)} y={Y_AXIS_OFFSET}>W</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 3)} x={col(3)} y={Y_AXIS_OFFSET}>T</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 4)} x={col(4)} y={Y_AXIS_OFFSET}>F</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 5)} x={col(5)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 6)} x={col(6)} y={Y_AXIS_OFFSET}>S</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 7)} x={col(7)} y={Y_AXIS_OFFSET}>M</ColLabel>
+        <ColLabel active={isActiveDay(release, step, 8)} x={col(8)} y={Y_AXIS_OFFSET}>T</ColLabel>
+      </g>
+      {/* Red Line */}
+      <Line x1={col(0)} y1={row(0)} x2={col(3)} y2={row(3)} color="red" selected={selected} />
+      {/* Purple Lines */}
+      <Line x1={col(1)} y1={row(0)} x2={col(3)} y2={row(2)} color="purple" selected={selected} />
+      <Line x1={col(3)} y1={row(2)} x2={col(7)} y2={row(2)} color="purple" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="purple" selected={selected} />
+      {/* Blue Lines */}
+      <Line x1={col(2)} y1={row(0)} x2={col(4)} y2={row(2)} color="blue" selected={selected}  />
+      <Line x1={col(4)} y1={row(2)} x2={col(7)} y2={row(2)} color="blue" selected={selected} dashed />
+      <Line x1={col(7)} y1={row(2)} x2={col(8)} y2={row(3)} color="blue" selected={selected}  />
+      {/* Green Lines */}
+      <Line x1={col(3)} y1={row(0)} x2={col(4)} y2={row(1)} color="green" selected={selected}  />
+      <Line x1={col(4)} y1={row(1)} x2={col(7)} y2={row(1)} color="green" selected={selected} dashed/>
+      <Line x1={col(7)} y1={row(1)} x2={col(8)} y2={row(2)} color="green" selected={selected} />
+      {/* Animated Dots */}
+      <AnimatedCircle
+        r="18"
+        toggled={selected === 'red'}
+        fillOpacity={selectedOpacity(selected, 'red')}
+        onClick={() => setSelected(selected => selected !== 'red' ? 'red' : 'none')}
+        color="red"
+        x={DAY_STEPS[0].map(col)}
+        y={ENV_STEPS[0].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'purple'}
+        fillOpacity={selectedOpacity(selected, 'purple')}
+        onClick={() => setSelected(selected => selected !== 'purple' ? 'purple' : 'none')}
+        r="18"
+        color="purple"
+        x={DAY_STEPS[1].map(col)}
+        y={ENV_STEPS[1].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'blue'}
+        fillOpacity={selectedOpacity(selected, 'blue')}
+        onClick={() => setSelected(selected => selected !== 'blue' ? 'blue' : 'none')}
+        r="18"
+        color="blue"
+        x={DAY_STEPS[2].map(col)}
+        y={ENV_STEPS[2].map(row)}
+      />
+      <AnimatedCircle
+        toggled={selected === 'green'}
+        onClick={() => setSelected(selected => selected !== 'green' ? 'green' : 'none')}
+        fillOpacity={selectedOpacity(selected, 'green')}
+        r="18"
+        color="green" 
+        x={DAY_STEPS[3].map(col)}
+        y={ENV_STEPS[3].map(row)}
+      />
+    </svg>
+  )
+}
 ```
 
 </CodeSurfer>
 
 ---
 
-<svg width='100%' height='100%'>
-  <g id='columnGroup'>
-    <text x='5%' y='15%' fontSize='2rem' fontWeight='bold' fill='gainsboro'>
-      <tspan x='5%' dy='0'>Branch</tspan>
-      <tspan x='5%' dy='25%'>Internal</tspan>
-      <tspan x='5%' dy='25%'>Live 1</tspan>
-      <tspan x='5%' dy='25%'>Live All</tspan>
-    </text>
-    <text x='15%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='25%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='35%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>W</text>
-    <text dx='45%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-    <text dx='55%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>F</text>
-    <text dx='65%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='75%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>S</text>
-    <text dx='85%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>M</text>
-    <text dx='95%' y='5%' fontSize='1.7rem' fontWeight='bold' fill='gainsboro'>T</text>
-  </g>
-  {/* Red Line */}
-  <line x1="15%" y1="15%" x2="45%" y2="90%" strokeWidth="7" stroke="#a64d79" />
-  {/* Purple Lines */}
-  <line x1="25%" y1="15%" x2="45%" y2="65%" strokeWidth="7" stroke="#674da7" />
-  <line x1="45%" y1="65%" x2="85%" y2="65%"  strokeWidth="7" strokeDasharray="8" stroke="#674da7" />
-  {/* Blue Lines */}
-  <line x1="35%" y1="15%" x2="55%" y2="65%" strokeWidth="7" stroke="#3d85c6" />
-  <line x1="55%" y1="65%" x2="85%" y2="65%" strokeWidth="7" strokeDasharray="8" stroke="#3d85c6" />
-  <line x1="85%" y1="65%" x2="95%" y2="90%" strokeWidth="7" stroke="#3d85c6" />
-  {/* Green Lines */}
-  <line x1="45%" y1="15%" x2="55%" y2="40%" strokeWidth="7" stroke="#44818d" />
-  <line x1="55%" y1="40%" x2="85%" y2="40%" strokeWidth="7" strokeDasharray="8" stroke="#44818d" />
-  <line x1="85%" y1="40%" x2="95%" y2="65%" strokeWidth="7" stroke="#44818d" />
-  {/* Animated Dots */}
-  <AnimatedCircle
-    r="15"
-    color="#a64d79"
-    x={['15%','25%','35%','45%','45%','45%','45%','45%']}
-    y={['15%','40%','65%','90%','90%','90%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#674da7"
-    x={['25%','35%','45%','55%','65%','75%','85%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','65%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#3d85c6"
-    x={['35%','45%','55%','65%','75%','85%','95%','95%']}
-    y={['15%','40%','65%','65%','65%','65%','90%','90%']}
-  />
-  <AnimatedCircle
-    r="15"
-    color="#44818d" 
-    x={['45%','55%','65%','75%','85%','95%','95%','95%']}
-    y={['15%','40%','40%','40%','40%','65%','65%','65%']}
-  />
-</svg>
+<ReleaseSchedule />
 
 ---
 
-# Thanks!
+# Resources
+
+- Slides - [https://mdx-intro.netlify.com/](https://mdx-intro.netlify.com/)
+- [Slide Deck Code](https://github.com/infiniteluke/mdx-deck-intro)
+- [mdx-deck](https://github.com/jxnblk/mdx-deck)
+- [CodeSurfer](https://github.com/pomber/code-surfer)
+- [Copernicus Tech Debt Tech Demo Slides](https://copernicus-ah.netlify.com/)
+- [Components as Data Slides](https://componentsasdata.com/)
+- @luke on slack
+
+---
+
+# 👋 Thanks!

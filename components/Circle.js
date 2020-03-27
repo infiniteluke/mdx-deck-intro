@@ -1,22 +1,32 @@
 import React from 'react';
 
-export default ({ color = 'white', x = '50%', y = '50%', r = '50' }) => {
-  const [toggle, setToggle] = React.useState(false);
-  const strokeProps = toggle
+const COLOR_MAP = {
+  red: '#a64d79',
+  purple: '#674da7',
+  blue: '#3d85c6',
+  green: '#44818d',
+}
+
+export default React.forwardRef(({ color = 'red', x = '50%', y = '50%', r = '50', fillOpacity=1, toggled=false, onClick=()=>{} }, ref) => {
+    const myRef = React.useRef();
+  React.useImperativeHandle(ref, () => ({}));
+  const strokeProps = toggled
     ? {
-        stroke: color,
-        strokeWidth: '10',
+        stroke: COLOR_MAP[color],
+        strokeWidth: '13',
         strokeOpacity: '.5',
       }
     : {};
   return (
-    <circle
-      onClick={() => setToggle(t => !t)}
-      cx={x}
-      cy={y}
-      r={r}
-      fill={color}
-      {...strokeProps}
-    />
+      <circle
+        ref={myRef}
+        onClick={onClick}
+        cx={x}
+        cy={y}
+        r={r}
+        fill={COLOR_MAP[color]}
+        fillOpacity={fillOpacity}
+        {...strokeProps}
+      />
   );
-};
+});
