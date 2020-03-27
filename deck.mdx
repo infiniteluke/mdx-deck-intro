@@ -17,6 +17,7 @@ import Circle from './components/Circle'
 import MovableCircle from './components/MovableCircle'
 import AnimatedCircle from './components/AnimatedCircle'
 import ReleaseSchedule from './components/ReleaseSchedule'
+import StepCounter from './components/StepCounter'
 
 import customTheme from './theme'
 
@@ -907,8 +908,8 @@ import Circle from './Circle'
 
 export default ({
   color = 'white',
-  x=['50%','75%'],
-  y=['50%','75%']
+  x=['50%', '75%', '21%'],
+  y=['50%', '75%', '81%']
 }) => {
   const step = useSteps(x.length-1)
   return (
@@ -928,8 +929,8 @@ import Circle from './Circle'
 
 export default ({
   color = 'white',
-  x=['50%','75%'],
-  y=['50%','75%']
+  x=['50%', '75%', '21%'],
+  y=['50%', '75%', '81%']
 }) => {
   const step = useSteps(x.length-1)
   return (
@@ -949,8 +950,8 @@ import Circle from './Circle'
 
 export default ({
   color = 'white',
-  x=['50%','75%'],
-  y=['50%','75%']
+  x=['50%', '75%', '21%'],
+  y=['50%', '75%', '81%']
 }) => {
   const step = useSteps(x.length-1)
   return (
@@ -986,8 +987,8 @@ const AnimatedCircle = animated(Circle)
 
 export default ({
   color,
-  x=['50%','75%'],
-  y=['50%','75%']
+  x,
+  y
 }) => {
   const step = useSteps(x.length-1)
   const props = useSpring({ x: x[step],y: y[step]})
@@ -1012,8 +1013,8 @@ const AnimatedCircle = animated(Circle)
 
 export default ({
   color,
-  x=['50%','75%'],
-  y=['50%','75%']
+  x,
+  y
 }) => {
   const step = useSteps(x.length-1)
   const props = useSpring({ x: x[step],y: y[step]})
@@ -1038,8 +1039,8 @@ const AnimatedCircle = animated(Circle)
 
 export default ({
   color,
-  x=['50%','75%'],
-  y=['50%','75%']
+  x,
+  y
 }) => {
   const step = useSteps(x.length-1)
   const props = useSpring({ x: x[step],y: y[step]})
@@ -1064,8 +1065,8 @@ const AnimatedCircle = animated(Circle)
 
 export default ({
   color,
-  x=['50%','75%'],
-  y=['50%','75%']
+  x,
+  y
 }) => {
   const step = useSteps(x.length-1)
   const props = useSpring({ x: x[step],y: y[step]})
@@ -1090,8 +1091,8 @@ const AnimatedCircle = animated(Circle)
 
 export default ({
   color,
-  x=['50%','75%'],
-  y=['50%','75%']
+  x,
+  y
 }) => {
   const step = useSteps(x.length-1)
   const props = useSpring({ x: x[step],y: y[step]})
@@ -1109,6 +1110,8 @@ export default ({
 </CodeSurfer>
 
 ---
+
+<StepCounter num={5} />
 
 <svg height="100%" width="100%">
   <AnimatedCircle
