@@ -85,7 +85,6 @@ const isDoneIndex = selectedIndex =>
   ENV_STEPS[selectedIndex].findIndex((env, index, array) =>
     ENV_STEPS[selectedIndex].slice(index, array.length).every(e => e === env)
   );
-const isDone = (step, doneIndex) => step > doneIndex;
 const clampNumber = (num, a, b) =>
   Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b));
 
@@ -94,7 +93,7 @@ function isActiveDay(selectedIndex, step, day) {
     return true;
   }
   const doneIndex = isDoneIndex(selectedIndex);
-  const pos = clampNumber(step + selectedIndex, 0, doneIndex + selectedIndex);
+  const pos = clampNumber(step + selectedIndex, selectedIndex, doneIndex + selectedIndex);
   return pos === day;
 }
 
